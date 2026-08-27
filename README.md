@@ -46,16 +46,25 @@ To land a shared fix: change it here first, then copy the file verbatim into
 each app (`app/lib/widgets/` in Retro-Amiga, `flutter_app/lib/widgets/`
 elsewhere) and run the check until every row says `verbatim`.
 
-## Per-platform customisation
+## One frontend, any core
 
-Everything a machine may customise lives in ONE object:
-`lib/profiles/platform_profile.dart`. A profile brings its accent colour, its
-tab set (the canonical vocabulary plus recorded machine-specific extras) and
-its in-game tools; the widgets and metrics never change per platform. The
-demo's chip bar swaps profiles live, so a shell change is seen under every
-machine's skin before it ships. If a difference cannot be expressed in a
-profile, it is not a per-platform difference - it is drift, and the fleet's
-/sync page will say so.
+This is not a viewer of the existing apps - it is THE frontend, designed
+core-agnostically. Building a new app is three steps:
+
+1. **Pick the core** - Amiberry, VICE, Box64/Box86, anything. Get the core
+   and content building on its own.
+2. **Write the blueprint** (`lib/profiles/platform_profile.dart`): which
+   modules from the catalogue the rail carries (no Music for a PC frontend;
+   Setup wizard as a rail item; Logs split out), what the context-dependent
+   ones mean there (Collections becomes "Series" - Need for Speed, Wing
+   Commander), and the accent. Compliance and About are not removable: every
+   app of this family ships reviewer-facing evidence and a compliance mode.
+3. **Build the bridge** - the layer that lets this GUI boot the core, hand it
+   content, capture its screen and drive it from the session tool rail.
+
+The **Designer** (🛠 chip in the running app) toggles catalogue modules live
+against any blueprint and **Export blueprint** copies the result as JSON to
+seed the new app. The Box86 blueprint ships as the worked example draft.
 
 ## Run it
 
