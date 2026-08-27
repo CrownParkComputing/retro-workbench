@@ -45,3 +45,16 @@ the family by blob hash and prints who has drifted:
 To land a shared fix: change it here first, then copy the file verbatim into
 each app (`app/lib/widgets/` in Retro-Amiga, `flutter_app/lib/widgets/`
 elsewhere) and run the check until every row says `verbatim`.
+
+## Run it
+
+This repo IS a Flutter app now — the shell running on its own, with the
+canonical rail vocabulary, the media-card grid and a movable-control
+playground:
+
+```sh
+flutter run -d linux        # or any device
+```
+
+Design changes here, see them running, then copy the touched widget files
+verbatim into the apps and watch the fleet's /sync page go green.
