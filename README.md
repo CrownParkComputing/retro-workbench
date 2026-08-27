@@ -46,6 +46,17 @@ To land a shared fix: change it here first, then copy the file verbatim into
 each app (`app/lib/widgets/` in Retro-Amiga, `flutter_app/lib/widgets/`
 elsewhere) and run the check until every row says `verbatim`.
 
+## Per-platform customisation
+
+Everything a machine may customise lives in ONE object:
+`lib/profiles/platform_profile.dart`. A profile brings its accent colour, its
+tab set (the canonical vocabulary plus recorded machine-specific extras) and
+its in-game tools; the widgets and metrics never change per platform. The
+demo's chip bar swaps profiles live, so a shell change is seen under every
+machine's skin before it ships. If a difference cannot be expressed in a
+profile, it is not a per-platform difference - it is drift, and the fleet's
+/sync page will say so.
+
 ## Run it
 
 This repo IS a Flutter app now — the shell running on its own, with the
